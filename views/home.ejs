@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+  </head>
+  <body>
+    <section style="border: solid 1px green; margin: 2rem; ">
+        <section style="text-align: center">
+      <h1 style="text-decoration: underline">Chat App</h1>
+      <input type="text" class="message" style="height:25px"/>
+      <button onclick="sendMsg()" style="margin: 1rem;width:150px;height:30px">Send Message</button>
+    </section>
+      
+      <h2 style="text-align: center;"></h2>
+      <hr style="margin: 1rem;">
+      <h5 style="margin: 1rem;">Created by:Abhijeet Mulik</h5>
+
+    </section>
+    
+    <script>
+      const socket = io("http://localhost:3000");
+
+      socket.on("connection");
+
+      const sendMsg = () => {
+        socket.emit("message", document.querySelector(".message").value);
+      };
+
+      socket.on("message", (data) => {
+        document.querySelector("h2").innerHTML = data;
+      });
+    </script>
+  </body>
+</html>
